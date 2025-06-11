@@ -1,0 +1,14 @@
+@use './components/TextField/TextFieldTheme' as text-field-theme;
+
+@include text-field-theme.theme ((
+  background: #F8F5F5,
+  background-hover: #ECECEC,
+  background-focus: #E4E4E4,
+  label-color: #A3A3A3,
+  label-color-floating: #1A2536,
+  label-color-error: #F51512,
+  underline-color: #8E8E8E,
+  underline-color-active: #1A2536,
+  underline-color-error: #F51512,
+  error-text-color: #F51512
+));

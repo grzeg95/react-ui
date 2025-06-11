@@ -1,0 +1,71 @@
+@use "sass:map";
+
+@mixin theme($theme) {
+
+  $background: map.get($theme, 'background');
+  $background-hover: map.get($theme, 'background-hover');
+  $background-focus: map.get($theme, 'background-focus');
+  $label-color: map.get($theme, 'label-color');
+  $label-color-floating: map.get($theme, 'label-color-floating');
+  $label-color-error: map.get($theme, 'label-color-error');
+  $underline-color: map.get($theme, 'underline-color');
+  $underline-color-active: map.get($theme, 'underline-color-active');
+  $underline-color-error: map.get($theme, 'underline-color-error');
+  $error-text-color: map.get($theme, 'error-text-color');
+
+  .text-field-wrapper {
+
+    .text-field {
+
+      background: $background;
+
+      .text-field-label {
+
+        color: $label-color;
+
+        &--floating {
+          color: $label-color-floating;
+        }
+      }
+
+      .text-field-underline {
+
+        background: $underline-color;
+
+        &--active {
+          background: $underline-color-active;
+        }
+      }
+
+      &:hover:not(.text-field--focused) {
+        background: $background-hover;
+      }
+
+      &:hover:not(.text-field--focused):not(.text-field--error) {
+        .text-field-underline {
+          background: $underline-color-active;
+        }
+      }
+
+      &--focused {
+        background: $background-focus;
+      }
+
+      &--error {
+        .text-field-label {
+          color: $label-color-error;
+        }
+
+        .text-field-underline {
+          background: $underline-color-error;
+        }
+      }
+    }
+
+    .text-field-error-wrapper {
+      .text-field-error {
+        color: $error-text-color;
+      }
+    }
+  }
+}
