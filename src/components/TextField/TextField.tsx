@@ -1,19 +1,16 @@
 import './TextField.scss';
-import {type ChangeEventHandler, type RefObject, useRef, useState} from 'react';
+import {type ChangeEventHandler, type RefObject, useId, useRef, useState} from 'react';
 
 interface TextFieldProps {
   type?: 'text' | 'number';
   required?: boolean;
   placeholder?: string;
   label?: string;
-  id?: string;
   disabled?: boolean;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   ref?: RefObject<HTMLInputElement | null>;
   error?: string;
 }
-
-let _id = 1;
 
 export function TextField(
   {
@@ -21,7 +18,6 @@ export function TextField(
     required = false,
     placeholder,
     label,
-    id,
     disabled,
     onChange = () => {},
     ref,
@@ -33,7 +29,7 @@ export function TextField(
   const inputRef = ref || _inputRef;
 
   const [focused, setFocused] = useState(false);
-  const [inputId] = useState<string>(id ? id : 'TextField_' + _id++);
+  const inputId = useId();
 
   const labelFloating = inputRef.current?.value || focused;
 
